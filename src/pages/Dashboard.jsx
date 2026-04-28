@@ -1,84 +1,69 @@
-import {Container,TextField,Button,Typography} from "@mui/material";
-import {useState} from "react";
+import { Container, TextField, Button, Typography } from "@mui/material";
+import { useState } from "react";
 import API from "../services/api";
-import {getUserLocation} from "../utils/location";
-import {calculateDistance} from "../utils/distance";
+import { getUserLocation } from "../utils/location";
+import { calculateDistance } from "../utils/distance";
 
-function Dashboard(){
+function Dashboard() {
+  const [blood, setBlood] = useState("");
+  const [range, setRange] = useState("");
 
-const[blood,setBlood]=useState("");
-const[range,setRange]=useState("");
+  const [donors, setDonors] = useState([]);
+  const [userLocation, setUserLocation] = useState(null);
 
-const[donors,setDonors]=useState([]);
-const[userLocation,setUserLocation]=useState(null);
+  const search = async () => {
+    const location = await getUserLocation();
 
-const search=async()=>{
+    setUserLocation(location);
 
-const location=await getUserLocation();
+    const res = await API.get(
+      `/donors/nearby?lat=${location.lat}&lon=${location.lon}&blood=${blood}&range=${range}`,
+    );
 
-setUserLocation(location);
+    setDonors(res.data);
+  };
 
-const res=await API.get(
+  return (
+    <Container sx={{ mt: 5 }}>
+      <Typography variant="h4">Find Blood Donor</Typography>
 
-`/donors/nearby?lat=${location.lat}&lon=${location.lon}&blood=${blood}&range=${range}`
+      <TextField
+        label="Blood Group"
+        fullWidth
+        margin="normal"
+        onChange={(e) => setBlood(e.target.value)}
+      />
 
-);
+      <TextField
+        label="Distance (KM)"
+        fullWidth
+        margin="normal"
+        onChange={(e) => setRange(e.target.value)}
+      />
 
-setDonors(res.data);
+      <Button variant="contained" sx={{ mt: 2 }} onClick={search}>
+        Search Donor
+      </Button>
 
-}
+      {userLocation && (
+        <GoogleMapView
+          donors={donors}
+          userLocation={{ lat: userLocation.lat, lng: userLocation.lon }}
+        />
+      )}
 
-return(
+      {donors.map((d) => {
+        const dist = calculateDistance(
+          userLocation.lat,
+          userLocation.lon,
+          d.latitude,
+          d.longitude,
+        );
 
-<Container sx={{mt:5}}>
-
-<Typography variant="h4">
-Find Blood Donor
-</Typography>
-
-<TextField label="Blood Group" fullWidth margin="normal"
-onChange={(e)=>setBlood(e.target.value)}
-/>
-
-<TextField label="Distance (KM)" fullWidth margin="normal"
-onChange={(e)=>setRange(e.target.value)}
-/>
-
-<Button variant="contained" sx={{mt:2}} onClick={search}>
-Search Donor
-</Button>
-
-{
-userLocation &&
-
-<GoogleMapView
-donors={donors}
-userLocation={{lat:userLocation.lat,lng:userLocation.lon}}
-/>
-
-}
-
-{
-donors.map((d)=>{
-
-const dist=calculateDistance(
-userLocation.lat,
-userLocation.lon,
-d.latitude,
-d.longitude
-);
-
-return(
-<DonorCard key={d.id} donor={d} distance={dist}/>
-)
-
-})
-}
-
-</Container>
-
-)
-
+        return <DonorCard key={d.id} donor={d} distance={dist} />;
+      })}
+    </Container>
+  );
 }
 
 export default Dashboard;

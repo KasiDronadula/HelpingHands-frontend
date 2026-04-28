@@ -4,7 +4,6 @@ import API from "../services/api";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -33,11 +32,10 @@ export const AuthProvider = ({ children }) => {
       await API.post("/auth/register", {
         name,
         email,
-        password
+        password,
       });
 
       return true;
-
     } catch (err) {
       console.log(err);
       return false;
@@ -50,13 +48,15 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{
-      user,
-      login,
-      register, 
-      logout,
-      isLoggedIn: !!user
-    }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        login,
+        register,
+        logout,
+        isLoggedIn: !!user,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

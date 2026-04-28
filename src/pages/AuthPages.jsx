@@ -5,24 +5,24 @@ import { useAuth } from "../context/AuthContext";
 const containerStyle = {
   display: "flex",
   justifyContent: "center",
-  alignItems: "flex-start",  
-  paddingTop: "100px",        
+  alignItems: "flex-start",
+  paddingTop: "100px",
   minHeight: "100vh",
-  background: "linear-gradient(to right, #d8cecc, #fbfafa)"
+  background: "linear-gradient(to right, #d8cecc, #fbfafa)",
 };
 
 const formStyle = {
   display: "flex",
   flexDirection: "column",
   gap: "15px",
-  width: "320px"
+  width: "320px",
 };
 
 const inputStyle = {
   padding: "12px",
   borderRadius: "6px",
   border: "1px solid #ccc",
-  fontSize: "14px"
+  fontSize: "14px",
 };
 
 const buttonStyle = {
@@ -32,24 +32,22 @@ const buttonStyle = {
   border: "none",
   borderRadius: "6px",
   cursor: "pointer",
-  fontWeight: "bold"
+  fontWeight: "bold",
 };
 
 const errorStyle = {
   color: "red",
   fontSize: "14px",
-  textAlign: "center"
+  textAlign: "center",
 };
 
 const linkStyle = {
   textAlign: "center",
   marginTop: "10px",
-  fontSize: "14px"
+  fontSize: "14px",
 };
 
-
 const Login = () => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -84,9 +82,7 @@ const Login = () => {
 
   return (
     <div style={containerStyle}>
-
       <form style={formStyle} onSubmit={handleSubmit}>
-
         <h2 style={{ textAlign: "center" }}>Login</h2>
 
         {error && <p style={errorStyle}>{error}</p>}
@@ -114,16 +110,12 @@ const Login = () => {
         <p style={linkStyle}>
           Don't have an account? <Link to="/register">Register</Link>
         </p>
-
       </form>
-
     </div>
   );
 };
 
-
 const Register = () => {
-
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -163,11 +155,7 @@ const Register = () => {
 
     setLoading(true);
 
-    const success = await register(
-      form.name,
-      form.email,
-      form.password
-    );
+    const success = await register(form.name, form.email, form.password);
 
     if (success) {
       alert("Registered successfully");
@@ -181,9 +169,7 @@ const Register = () => {
 
   return (
     <div style={containerStyle}>
-
       <form style={formStyle} onSubmit={handleSubmit}>
-
         <h2 style={{ textAlign: "center" }}>Register</h2>
 
         {error && <p style={errorStyle}>{error}</p>}
@@ -229,9 +215,7 @@ const Register = () => {
         <p style={linkStyle}>
           Already have an account? <Link to="/login">Login</Link>
         </p>
-
       </form>
-
     </div>
   );
 };

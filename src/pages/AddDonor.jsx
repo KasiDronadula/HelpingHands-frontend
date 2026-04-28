@@ -6,7 +6,6 @@ import API from "../services/api";
 const BLOOD_GROUPS = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
 const AddDonor = () => {
-
   const { user, isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
@@ -43,7 +42,7 @@ const AddDonor = () => {
             lon: pos.coords.longitude,
           });
         },
-        (err) => reject(err)
+        (err) => reject(err),
       );
     });
   };
@@ -73,7 +72,6 @@ const AddDonor = () => {
       });
 
       setSuccess(true);
-
     } catch (err) {
       console.log(err);
       setError("Failed to add donor");
@@ -87,26 +85,20 @@ const AddDonor = () => {
       <div className="page-wrapper">
         <h2>✅ You are now a donor!</h2>
 
-        <button onClick={() => navigate("/search")}>
-          View Donors
-        </button>
+        <button onClick={() => navigate("/search")}>View Donors</button>
 
-        <button onClick={() => navigate("/")}>
-          Home
-        </button>
+        <button onClick={() => navigate("/")}>Home</button>
       </div>
     );
   }
 
   return (
     <div className="page-wrapper">
-
       <h1>Become a Blood Donor</h1>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       <form onSubmit={handleSubmit}>
-
         <input
           type="text"
           name="name"
@@ -143,18 +135,19 @@ const AddDonor = () => {
           <option value="">Select Blood Group</option>
 
           {BLOOD_GROUPS.map((g) => (
-            <option key={g} value={g}>{g}</option>
+            <option key={g} value={g}>
+              {g}
+            </option>
           ))}
         </select>
 
-        <br /><br />
+        <br />
+        <br />
 
         <button type="submit" disabled={loading}>
           {loading ? "Submitting..." : "Register"}
         </button>
-
       </form>
-
     </div>
   );
 };

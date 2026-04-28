@@ -11,7 +11,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/"); 
+    navigate("/");
     setMenuOpen(false);
   };
 
@@ -21,7 +21,6 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-inner">
-
         <Link to="/" className="navbar-logo" onClick={() => setMenuOpen(false)}>
           <span style={{ fontSize: "25px" }}>🩸</span>
           <div>
@@ -41,15 +40,22 @@ const Navbar = () => {
         </button>
 
         <ul className={`navbar-links ${menuOpen ? "mobile-open" : ""}`}>
-
           <li>
-            <Link to="/" className={isActive("/")} onClick={() => setMenuOpen(false)}>
+            <Link
+              to="/"
+              className={isActive("/")}
+              onClick={() => setMenuOpen(false)}
+            >
               Home
             </Link>
           </li>
 
           <li>
-            <Link to="/search" className={isActive("/search")} onClick={() => setMenuOpen(false)}>
+            <Link
+              to="/search"
+              className={isActive("/search")}
+              onClick={() => setMenuOpen(false)}
+            >
               Find Donor
             </Link>
           </li>
@@ -57,19 +63,30 @@ const Navbar = () => {
           {isLoggedIn ? (
             <>
               <li>
-                <Link to="/become-donor" className={isActive("/become-donor")} onClick={() => setMenuOpen(false)}>
+                <Link
+                  to="/become-donor"
+                  className={isActive("/become-donor")}
+                  onClick={() => setMenuOpen(false)}
+                >
                   Become a Donor
                 </Link>
               </li>
 
               <li>
-                <Link to="/profile" className={isActive("/profile")} onClick={() => setMenuOpen(false)}>
+                <Link
+                  to="/profile"
+                  className={isActive("/profile")}
+                  onClick={() => setMenuOpen(false)}
+                >
                   👤 {user?.name?.split(" ")[0]}
                 </Link>
               </li>
 
               <li>
-                <button className="btn navbar-btn-logout" onClick={handleLogout}>
+                <button
+                  className="btn navbar-btn-logout"
+                  onClick={handleLogout}
+                >
                   Logout
                 </button>
               </li>
@@ -77,21 +94,27 @@ const Navbar = () => {
           ) : (
             <>
               <li>
-                <Link to="/login" className={isActive("/login")} onClick={() => setMenuOpen(false)}>
+                <Link
+                  to="/login"
+                  className={isActive("/login")}
+                  onClick={() => setMenuOpen(false)}
+                >
                   Login
                 </Link>
               </li>
 
               <li>
-                <Link to="/register" className={isActive("/register")} onClick={() => setMenuOpen(false)}>
+                <Link
+                  to="/register"
+                  className={isActive("/register")}
+                  onClick={() => setMenuOpen(false)}
+                >
                   Register
                 </Link>
               </li>
             </>
           )}
-
         </ul>
-
       </div>
     </nav>
   );

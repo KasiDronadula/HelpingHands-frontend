@@ -10,13 +10,10 @@ import NotFound from "./pages/NotFound";
 import BecomeDonor from "./pages/BecomeDonor";
 
 const AppContent = () => {
-
   const { isLoggedIn } = useAuth();
 
   return (
     <BrowserRouter>
-
-
       <div className="app-container">
         <Navbar />
 
@@ -32,15 +29,12 @@ const AppContent = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
-        
-          <footer className="footer">
-            🩸 Helping Hands — Saving Lives, One Drop at a Time |
-            Built with React + Spring Boot + MySQL
-          </footer>
-      
 
+        <footer className="footer">
+          🩸 Helping Hands — Saving Lives, One Drop at a Time | Built with React
+          + Spring Boot + MySQL
+        </footer>
       </div>
-
     </BrowserRouter>
   );
 };

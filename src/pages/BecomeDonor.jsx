@@ -1,41 +1,44 @@
-import { Container, TextField, Button, Typography, MenuItem } from "@mui/material";
+import {
+  Container,
+  TextField,
+  Button,
+  Typography,
+  MenuItem,
+} from "@mui/material";
 import { useState } from "react";
 import API from "../services/api";
 
 const BLOOD_GROUPS = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
-function BecomeDonor(){
+function BecomeDonor() {
+  const [name, setName] = useState("");
+  const [bloodGroup, setBloodGroup] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
 
-  const [name,setName] = useState("");
-  const [bloodGroup,setBloodGroup] = useState("");
-  const [phone,setPhone] = useState("");
-  const [email,setEmail] = useState("");
-
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const registerDonor = async () => {
-
-    if(!name || !bloodGroup || !phone || !email){
+    if (!name || !bloodGroup || !phone || !email) {
       alert("Please fill all fields");
       return;
     }
 
-    try{
+    try {
       setLoading(true);
 
       navigator.geolocation.getCurrentPosition(
-        async(position)=>{
-
+        async (position) => {
           const lat = position.coords.latitude;
           const lon = position.coords.longitude;
 
-          await API.post("/donors/add",{
+          await API.post("/donors/add", {
             name,
             bloodGroup,
             phone,
             email,
             latitude: lat,
-            longitude: lon
+            longitude: lon,
           });
 
           alert("✅ Donor added successfully");
@@ -47,25 +50,22 @@ function BecomeDonor(){
           setEmail("");
 
           setLoading(false);
-
         },
-        (error)=>{
+        (error) => {
           console.log(error);
           alert("Location permission denied");
           setLoading(false);
-        }
+        },
       );
-
-    }catch(err){
+    } catch (err) {
       console.log(err);
       alert("Error adding donor");
       setLoading(false);
     }
   };
 
-  return(
-    <Container maxWidth="sm" sx={{ mt:5 }}>
-
+  return (
+    <Container maxWidth="sm" sx={{ mt: 5 }}>
       <Typography variant="h4" gutterBottom>
         Become a Donor
       </Typography>
@@ -75,7 +75,7 @@ function BecomeDonor(){
         fullWidth
         margin="normal"
         value={name}
-        onChange={(e)=>setName(e.target.value)}
+        onChange={(e) => setName(e.target.value)}
       />
 
       <TextField
@@ -84,10 +84,12 @@ function BecomeDonor(){
         fullWidth
         margin="normal"
         value={bloodGroup}
-        onChange={(e)=>setBloodGroup(e.target.value)}
+        onChange={(e) => setBloodGroup(e.target.value)}
       >
-        {BLOOD_GROUPS.map((g)=>(
-          <MenuItem key={g} value={g}>{g}</MenuItem>
+        {BLOOD_GROUPS.map((g) => (
+          <MenuItem key={g} value={g}>
+            {g}
+          </MenuItem>
         ))}
       </TextField>
 
@@ -96,7 +98,7 @@ function BecomeDonor(){
         fullWidth
         margin="normal"
         value={phone}
-        onChange={(e)=>setPhone(e.target.value)}
+        onChange={(e) => setPhone(e.target.value)}
       />
 
       <TextField
@@ -104,19 +106,18 @@ function BecomeDonor(){
         fullWidth
         margin="normal"
         value={email}
-        onChange={(e)=>setEmail(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
       />
 
       <Button
         variant="contained"
         fullWidth
-        sx={{ mt:2 }}
+        sx={{ mt: 2 }}
         onClick={registerDonor}
         disabled={loading}
       >
         {loading ? "Submitting..." : "Register as Donor"}
       </Button>
-
     </Container>
   );
 }

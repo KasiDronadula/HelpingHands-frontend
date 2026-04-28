@@ -20,13 +20,12 @@ const Home = () => {
     }
 
     navigate(
-      `/search?bloodGroup=${encodeURIComponent(bloodGroup)}&distance=${distance}`
+      `/search?bloodGroup=${encodeURIComponent(bloodGroup)}&distance=${distance}`,
     );
   };
 
   return (
     <div>
-
       <section className="hero-section">
         <span style={{ fontSize: "60px" }}>🩸</span>
         <h1>Welcome to Helping Hands !</h1>
@@ -36,17 +35,27 @@ const Home = () => {
       <div className="search-card">
         <div>
           <h3>"The blood you donate gives someone another chance at life."</h3>
-          </div>
-      </div>
-      
-      <div className="stats-bar" style={{ marginTop:"100px" }}>
-        <div><h2>100+</h2><p>Donors</p></div>
-        <div><h2 style={{paddingLeft:"40px"}}>8</h2><p>Blood Groups</p></div>
-        <div><h2>24/7</h2><p>Available</p></div>
-        <div><h2>Free</h2><p>No Cost</p></div>
+        </div>
       </div>
 
-
+      <div className="stats-bar" style={{ marginTop: "100px" }}>
+        <div>
+          <h2>100+</h2>
+          <p>Donors</p>
+        </div>
+        <div>
+          <h2 style={{ paddingLeft: "40px" }}>8</h2>
+          <p>Blood Groups</p>
+        </div>
+        <div>
+          <h2>24/7</h2>
+          <p>Available</p>
+        </div>
+        <div>
+          <h2>Free</h2>
+          <p>No Cost</p>
+        </div>
+      </div>
     </div>
   );
 };

@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const Profile = () => {
-
   const { user, logout, isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
@@ -14,9 +13,7 @@ const Profile = () => {
           <h2>Not Logged In</h2>
           <p>Please login to view your profile.</p>
 
-          <button onClick={() => navigate("/login")}>
-            Login
-          </button>
+          <button onClick={() => navigate("/login")}>Login</button>
         </div>
       </div>
     );
@@ -29,11 +26,9 @@ const Profile = () => {
 
   return (
     <div className="page-wrapper">
-
       <h1>My Profile</h1>
 
       <div className="profile-card">
-
         <div className="profile-header">
           <div style={{ fontSize: "50px" }}>👤</div>
           <h2>{user.name}</h2>
@@ -41,7 +36,6 @@ const Profile = () => {
         </div>
 
         <div className="profile-body">
-
           <div className="profile-row">
             <strong>Name:</strong> {user.name}
           </div>
@@ -61,11 +55,9 @@ const Profile = () => {
               <strong>Blood Group:</strong> {user.bloodGroup}
             </div>
           )}
-
         </div>
 
         <div style={{ marginTop: "20px" }}>
-
           <button
             onClick={() => navigate("/become-donor")}
             className="btn btn-primary"
@@ -80,11 +72,8 @@ const Profile = () => {
           >
             Logout
           </button>
-
         </div>
-
       </div>
-
     </div>
   );
 };

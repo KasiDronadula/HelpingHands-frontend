@@ -85,36 +85,28 @@ http://localhost:8080
 
 ---
 
-## 🎯 Future Improvements
+## Screen Shots of the Frontend
 
-- 📞 One-click call / WhatsApp integration  
-- 🗺️ Map view for donors  
-- 🔔 Emergency alerts system  
-- 📊 Donor availability status  
+### donorRegistration page
 
----
+<img width="1918" height="870" alt="donorRegistration" src="https://github.com/user-attachments/assets/087cbf85-5238-442e-a72a-de756987fe3f" />
 
-## ❤️ Contribution
+### findingDonors page
 
-Contributions are welcome! Feel free to fork and improve.
+<img width="1898" height="868" alt="findingdonors" src="https://github.com/user-attachments/assets/1ca78aae-1651-423b-8c11-f03ee72188b7" />
 
----
+### login page
 
-## 📄 License
+<img width="1895" height="875" alt="login" src="https://github.com/user-attachments/assets/33d53a88-aecf-43ac-ac42-5188f4af6f8d" />
 
-This project is open-source and available for learning purposes.
+### logout page
 
----
+<img width="1894" height="871" alt="logout" src="https://github.com/user-attachments/assets/433d20b2-2a25-4857-93d5-7b5b8a3ea0c6" />
 
-## 💡 Tagline
+### profile page of the User
 
-🩸 *Saving Lives, One Drop at a Time*....## 🔗 Backend
+<img width="1918" height="869" alt="Profile" src="https://github.com/user-attachments/assets/c1fda55e-348f-4259-b59e-d5724c6c0640" />
 
-This frontend connects with a Spring Boot backend:
-
-http://localhost:8080
-
----
 
 ## 🎯 Future Improvements
 
@@ -139,4 +131,5 @@ This project is open-source and available for learning purposes.
 
 ## 💡 Tagline
 
-🩸 *Saving Lives, One Drop at a Time*idon't want this part inside bash
+🩸 *Saving Lives, One Drop at a Time*....
+
